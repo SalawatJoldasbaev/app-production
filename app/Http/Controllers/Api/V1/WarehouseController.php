@@ -16,7 +16,7 @@ class WarehouseController extends Controller
         $data = [];
         $warehouses = Warehouse::all(['id', 'material_id', 'remainder', 'price']);
         foreach ($products as $item_product) {
-            $product = Product::find($item_product['product_id']);
+            $product = Product::byCode($item_product['product_code']);
             $materials = $product->materials;
             $product_materals = collect([]);
 

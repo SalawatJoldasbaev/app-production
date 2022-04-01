@@ -14,4 +14,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductMaterial::class)->select('material_id', 'quantity');
     }
+
+    public function scopeByCode($query, $code)
+    {
+        return $query->where('code', $code)->first();
+    }
 }

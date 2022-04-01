@@ -28,9 +28,9 @@ class WarehouseRequest extends FormRequest
     public function rules()
     {
         return [
-            'products'=> 'required|array',
-            'products.*.product_id'=> 'required',
-            'products.*.count'=> 'required',
+            'products' => 'required|array',
+            'products.*.product_code' => 'required|exists:products,code',
+            'products.*.count' => 'required',
         ];
     }
 
@@ -38,6 +38,6 @@ class WarehouseRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'message'   => $validator->errors()->first()
-        ],422));
+        ], 422));
     }
 }
