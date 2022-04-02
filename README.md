@@ -7,7 +7,7 @@ API DOCUMENTATION
 ------
 
 **Api name:** warehouse<br/>
-**Path:** {{BASE_URL}}/api/v1/warehouse<br/>
+**Path:** `{{BASE_URL}}/api/v1/warehouse`<br/>
 **Method:** GET<br/>
 **Column types:** `products`: list, `product_code`: string, `count`: int
 
