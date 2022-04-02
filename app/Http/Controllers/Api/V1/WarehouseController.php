@@ -57,7 +57,7 @@ class WarehouseController extends Controller
                         $temp['qty'] -= $used_material->sum('qty');
                     }
                 }
-                $temp['qty'] = round($temp['qty'], 1);
+                $temp['qty'] = abs(round($temp['qty'], 1));
                 $product_materals->push($temp);
             }
             $data[] = [
