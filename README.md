@@ -15,11 +15,11 @@ API DOCUMENTATION
  
     "products":[
         {
-            "product_code": "11",
+            "product_code": "10",
             "count": 30
         },
         {
-            "product_code": "22",
+            "product_code": "15",
             "count": 20
         }
     ]
