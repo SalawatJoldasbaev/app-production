@@ -21,7 +21,6 @@ class WarehouseController extends Controller
             $product_materals = collect([]);
 
             for ($i = 0; $i < count($materials); $i++) {
-
                 $material = $materials[$i];
                 $material_name = $material->material->name;
                 $quantity = $material->quantity * $item_product['count'];
