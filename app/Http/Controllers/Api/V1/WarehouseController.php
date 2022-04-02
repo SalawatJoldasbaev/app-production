@@ -21,11 +21,12 @@ class WarehouseController extends Controller
             $product_materals = collect([]);
 
             for ($i = 0; $i < count($materials); $i++) {
+
                 $material = $materials[$i];
                 $material_name = $material->material->name;
                 $quantity = $material->quantity * $item_product['count'];
                 $warehouse = $warehouses->where('remainder', '!=', 0)->where('material_id', $material->material_id)->first();
-                $used_material = $product_materals->where('material_name', $material_name)->first();
+                $used_material = $product_materals->where('material_name', $material_name);
                 $temp = [
                     'warehouse_id' => null,
                     'material_name' => $material_name,
@@ -34,8 +35,8 @@ class WarehouseController extends Controller
                 ];
                 if (!$warehouse) {
                     $temp['qty'] = $quantity;
-                    if (isset($used_material['qty'])) {
-                        $temp['qty'] -= $used_material['qty'];
+                    if (isset($used_material)) {
+                        $temp['qty'] -= $used_material->sum('qty');
                     }
                     $product_materals->push($temp);
                     continue;
@@ -51,9 +52,9 @@ class WarehouseController extends Controller
                 } else {
                     $temp['qty'] = $quantity;
                     $warehouse->remainder -= $quantity;
-                    if (isset($used_material['qty'])) {
-                        $warehouse->remainder += $used_material['qty'];
-                        $temp['qty'] -= $used_material['qty'];
+                    if (isset($used_material)) {
+                        $warehouse->remainder += $used_material->sum('qty');
+                        $temp['qty'] -= $used_material->sum('qty');
                     }
                 }
                 $temp['qty'] = round($temp['qty'], 1);

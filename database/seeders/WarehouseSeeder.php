@@ -13,7 +13,17 @@ class WarehouseSeeder extends Seeder
         $data = [
             [
                 'material_id' => 1,
-                'remainder' => 12,
+                'remainder' => 1,
+                'price' => 1500
+            ],
+            [
+                'material_id' => 1,
+                'remainder' => 1,
+                'price' => 1500
+            ],
+            [
+                'material_id' => 1,
+                'remainder' => 1,
                 'price' => 1500
             ],
             [
